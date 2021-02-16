@@ -355,7 +355,7 @@
 			<h2 class="section-title">Garanția și întrebări frecvente</h2>
 			<h3 class="section-subtitle">Studiați revista în de curs de 7 zile și dacă simțiți că nu vă convine din orice motiv vă returnăm banii</h3>
 			<div class="content">
-				<ul>
+				<ul id="accordion" class="accordion">
 					<li class="guaranty-item">
 						<div class="head">
 							<h4 class="title guaranty-title" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
@@ -365,7 +365,7 @@
 							</div>
 						</div>
 						<div class="desc">
-							<p class="collapse" id="collapse1">Pe pagina contabilsef.md cu regularitate sînt publicate articole cu conținut premium,
+							<p class="collapse" id="collapse1" data-parent="#accordion">Pe pagina contabilsef.md cu regularitate sînt publicate articole cu conținut premium,
 								care este cu acces doar pentru abonații Revistei noastre.
 								Odată cu activarea abonamentului primiți acces pentru perioada unui an la materiale din revistă și la beneficiile oferite.</p>
 						</div>
@@ -379,7 +379,7 @@
 							</div>
 						</div>
 						<div class="desc">
-							<p class="collapse" id="collapse2">Puteți achita cu cardul bancar personal sau corporativ sau prin transfer
+							<p class="collapse" id="collapse2" data-parent="#accordion">Puteți achita cu cardul bancar personal sau corporativ sau prin transfer
 								contul de plata primit pe poșta electronică indicată în contul personal. Factura fiscală va fi emisă prin SIA "E-factura".</p>
 						</div>
 					</li>
@@ -392,7 +392,7 @@
 							</div>
 						</div>
 						<div class="desc">
-							<p class="collapse" id="collapse3">Da, puteți face în orice moment un upgrade la abonamentul dvs.,
+							<p class="collapse" id="collapse3" data-parent="#accordion">Da, puteți face în orice moment un upgrade la abonamentul dvs.,
 								achitând doar diferența și să accesați toate beneficiile acestor abonamente.</p>
 						</div>
 					</li>
@@ -405,20 +405,21 @@
 							</div>
 						</div>
 						<div class="desc">
-							<p class="collapse" id="collapse4">Acest abonament este bazat pe principiu de abonare la o revistă pe suport de hîrtie.
+							<p class="collapse" id="collapse4" data-parent="#accordion">Acest abonament este bazat pe principiu de abonare la o revistă pe suport de hîrtie.
 								Respectiv primiți acces doar la articole publicate în anul pe care alegeți la abonare.
 								De exemplu, dacă alegeți anul 2021, primiți acces pentru o perioadă de un an la articolele publicate în perioada 01.01.2021-31.12.2021. </p>
 						</div>
 					</li>
 					<li class="guaranty-item">
 						<div class="head">
-							<h4 class="title">Care sînt pașii pentru abonarea la Revistă?</h4>
+							<h4 class="title guaranty-title" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+								Care sînt pașii pentru abonarea la Revistă?</h4>
 							<div class="icon-collapse" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
 								<img src="./images/collapseCross.svg" alt="collapseIcon">
 							</div>
 						</div>
 						<div class="desc">
-							<p class="collapse" id="collapse5">Alegeți abonamentul dorit și completați comanda.
+							<p class="collapse" id="collapse5" data-parent="#accordion">Alegeți abonamentul dorit și completați comanda.
 								Efectuați achitarea comenzii prin card bancar sau transfer.
 								Odată cu încasarea plății se activează abonamentul și primiți acces la Revistă și toate serviciile incluse în abonamentul ales.</p>
 						</div>
@@ -437,6 +438,7 @@
 					</div>
 					<div>
 						<h5 class="title">Totul despre anvelope și acumulatoare. Prevederi noi – probleme noi</h5>
+						<div class="author">Some undefined author</div>
 						<p class="text">În activitatea sa entitățile, care dispun de mijloace de transport,
 							procură anvelope și acumulatoare care ulterior sunt montate în locul celor uzate.
 							Această situație apare din cauza că durata de funcționare a acestor bunuri este mai scurtă decît durata de funcționare a mijloacelor de transport.
@@ -449,6 +451,7 @@
 					</div>
 					<div>
 						<h5 class="title">Capitalul propriu – interpretări și abordări contabile</h5>
+						<div class="author">Some undefined author</div>
 						<p class="text">La 1 ianuarie 2020 au intrat în vigoare modificări operate în SNC „Capital propriu și datorii" („CPD").
 							În prezentul articol sunt examinate conținutul și modul de aplicare a principalelor modificări operate în acest standard,
 							care se referă la modul de contabilizare a elementelor de capital propriu. Un rol important într-o societate ...</p>
@@ -460,6 +463,7 @@
 					</div>
 					<div>
 						<h5 class="title">Работник хочет уволиться, как правильно оформить?</h5>
+						<div class="author">Some undefined author</div>
 						<p class="text">В последнее время бытует мнение среди работников,
 							что можно написать заявление об увольнение по собственному желанию и в тоже день работодатель ОБЯЗАН рассчитать его и уволить.
 							Работники ссылаются на то что отрабатывать 14 дней сейчас не обязательно. Рассмотрим положение статьи 85 ТК...</p>
@@ -643,20 +647,37 @@
 			})
 		}
 		
-		const collapseIcons = document.querySelectorAll(".icon-collapse");
-		for (let i = 0; i < collapseIcons.length; i++) {
-			collapseIcons[i].addEventListener("click", () => {
-				collapseIcons[i].classList.toggle("active");
-			})
-		}
 		
-		const collapseTitle = document.querySelectorAll(".guaranty-title");
-		for (let i = 0; i < collapseTitle.length; i++) {
-			collapseTitle[i].addEventListener("click", () => {
-				collapseIcons[i].classList.toggle("active");
-			})
-		}
+		
+		// const collapseIcons = document.querySelectorAll(".icon-collapse");
+		// for (let i = 0; i < collapseIcons.length; i++) {
+		// 	collapseIcons[i].addEventListener("click", () => {
+		// 		for (let j = 0; j < collapseIcons.length; j++) {
+		// 			collapseIcons[i].classList.toggle("active");
+		// 		}
+		// 		collapseIcons[i].classList.toggle("active");
+		// 	})
+		// }
+		//
+		// const collapseTitle = document.querySelectorAll(".guaranty-title");
+		// for (let i = 0; i < collapseTitle.length; i++) {
+		// 	collapseTitle[i].addEventListener("click", () => {
+		// 		for (let j = 0; j < collapseTitle.length; j++) {
+		// 			collapseIcons[i].classList.toggle("active");
+		// 		}
+		// 		collapseIcons[i].classList.toggle("active");
+		// 	})
+		// }
 		$(document).ready(() => {
+			$('[data-toggle="collapse"]').on('click',function(e){
+				if ( $(this).parents('.accordion').find('.collapse.show') ){
+					let idx = $(this).index('[data-toggle="collapse"]');
+					if (idx == $('.collapse.show').index('.collapse')) {
+						// prevent collapse
+						e.stopPropagation();
+					}
+				}
+			});
 			$("#datepicker").datepicker({
 				format: "yyyy",
 				viewMode: "years",
